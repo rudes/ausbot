@@ -43,6 +43,7 @@ class AusBot(discord.Client):
     			logging.info('on_raw_reaction_add,message does not contain favorite_emote,{0}'payload.message_id)
     		if reaction.count > 4:
     			await message.attachments[0].save(self.file_storage+message.filename)
+    			logging.info('saved {0} to ausclan gallery',message.filename)
     	# handles exceptions for get_channel and fetch_message and save
     	except (discord.NotFound, discord.Forbidden, discord.HTTPException) as e:
     		logging.error('failed to pull file,{0}', e.text)
