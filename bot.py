@@ -13,7 +13,7 @@ class AusBot(discord.Client):
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
 
-		self.favorite_emote = discord.PartialEmoji(id=849774351262679040)
+		self.favorite_emote = discord.PartialEmoji(name=⭐)
 		self.file_storage = "/var/storage/gallery/"
 
 	# this executes when the bot has finished loading all of the configs and has established a connection
