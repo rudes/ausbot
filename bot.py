@@ -25,7 +25,6 @@ class AusBot(discord.Client):
      # this event happens when anyone adds a reaction to any message, we're going to check and see if its a star emote
      # and has at least 5 of them, then we will save the file to the server and use it in the websites gallery at /var/storage/gallery
      async def on_raw_reaction_add(self, payload: discord.RawReactionActionEvent):
-
         guild = self.get_guild(payload.guild_id)
         if guild is None:
             logging.error('on_raw_reaction_add,unable to retrieve guild,{0}',payload.guild_id)
