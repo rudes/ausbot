@@ -13,7 +13,7 @@ class AusBot(discord.Client):
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
 
-		self.favorite_emote = discord.PartialEmoji(name="⭐")
+		self.favorite_emote = discord.PartialEmoji(name="star")
 		self.file_storage = "/var/storage/gallery/"
 
 	# this executes when the bot has finished loading all of the configs and has established a connection
@@ -34,8 +34,8 @@ class AusBot(discord.Client):
 			if channel is None:
 				logging.error('on_raw_reaction_add,unable to retrieve channel,{0}',payload.channel_id)
 				return
-			await channel.send("test")
 			message = channel.fetch_message(payload.message_id)
+			await message.add_reaction(discord.PartialEmoji(name="white_check_mark"))
 			# this scans the message.reactions[] for a reaction that matches our star emote
 			reaction = next((x for x in message.reactions if x.emoji == self.favorite_emote), None)
 			if reaction is None:
