@@ -39,10 +39,10 @@ class AusBot(discord.Client):
 				return
 			message = await channel.fetch_message(payload.message_id)
 			# this scans the message.reactions[] for a reaction that matches our star emote
-			stars = (x for x in message.reactions if str(x.emoji) == "⭐")
+			stars = [x for x in message.reactions if str(x.emoji) == "⭐"]
 			if len(stars) < 1:
 				log.info('on_raw_reaction_add,message does not contain favorite_emote,{0}'.format(payload.message_id))
-			log.info(stars.count)
+			log.info(stars)
 			if len(stars) > 4:
 				await message.add_reaction(self.check_emote)
 				await message.attachments[0].save(self.file_storage+message.filename)
