@@ -42,6 +42,7 @@ class AusBot(discord.Client):
 			reaction = next((x for x in message.reactions if str(x.emoji) == "⭐"), None)
 			if reaction is None:
 				log.info('on_raw_reaction_add,message does not contain favorite_emote,{0}'.format(payload.message_id))
+			log.info(reaction.count)
 			if reaction.count > 4:
 				await message.add_reaction(self.check_emote)
 				await message.attachments[0].save(self.file_storage+message.filename)
