@@ -34,7 +34,7 @@ class AusBot(discord.Client):
 			if channel is None:
 				logging.error('on_raw_reaction_add,unable to retrieve channel,{0}',payload.channel_id)
 				return
-			await message = channel.fetch_message(payload.message_id)
+			message = await channel.fetch_message(payload.message_id)
 			# this scans the message.reactions[] for a reaction that matches our star emote
 			reaction = next((x for x in message.reactions if x.emoji == self.favorite_emote), None)
 			if reaction is None:
