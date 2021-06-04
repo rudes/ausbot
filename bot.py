@@ -43,8 +43,7 @@ class AusBot(discord.Client):
 			await message.add_reaction(self.favorite_emote)
 			#reaction = next((x for x in message.reactions if x.emoji == self.favorite_emote), None)
 			for reaction in message.reactions:
-				log.info(reaction.emoji)
-				log.info(self.favorite_emote)
+				log.info(str(reaction.emoji) == "⭐")
 			#if reaction is None:
 			#	log.info('on_raw_reaction_add,message does not contain favorite_emote,{0}'.format(payload.message_id))
 			#if reaction.count > 4:
