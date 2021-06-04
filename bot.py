@@ -4,7 +4,7 @@ import logging
 
 # basic running log that will sit on the server outside of docker /var/log/ausbot.log
 # we can view this file anytime and keep an eye on errors or info
-logging.basicConfig(format="%(asctime)s %(name)s:%(levelname)-8s %(message)s", filename="/var/log/snakebot.log")
+logging.basicConfig(format="%(asctime)s %(name)s:%(levelname)-8s %(message)s", filename="/var/log/ausbot.log")
 log = logging.getLogger(__name__)
 log.setLevel(logging.INFO)
 discord_log = logging.getLogger('discord')
