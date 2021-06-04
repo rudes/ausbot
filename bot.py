@@ -13,7 +13,7 @@ class AusBot(discord.Client):
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
 
-		self.favorite_emote = discord.PartialEmoji(name="star")
+		self.favorite_emote = discord.PartialEmoji(name="⭐")
 		self.file_storage = "/var/storage/gallery/"
 
 	# this executes when the bot has finished loading all of the configs and has established a connection
@@ -41,7 +41,7 @@ class AusBot(discord.Client):
 				logging.info('on_raw_reaction_add,message does not contain favorite_emote,{0}',payload.message_id)
 			if reaction.count > 4:
 				await message.attachments[0].save(self.file_storage+message.filename)
-				await message.add_reaction(discord.PartialEmoji(name="white_check_mark"))
+				await message.add_reaction(discord.PartialEmoji(name="✅"))
 				logging.info('saved {0} to ausclan gallery',message.filename)
 		# handles exceptions for get_channel and fetch_message and save
 		except (discord.NotFound, discord.Forbidden, discord.HTTPException, discord.InvalidArgument) as e:
