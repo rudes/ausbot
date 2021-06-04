@@ -53,6 +53,7 @@ class AusBot(discord.Client):
 # its a configuration for discord approvals
 intents = discord.Intents.default()
 intents.members = True
+intents.reactions = True
 
 client = AusBot(intents=intents)
 # we pull the botkey from the servers environment
