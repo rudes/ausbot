@@ -34,6 +34,7 @@ class AusBot(discord.Client):
 			if channel is None:
 				logging.error('on_raw_reaction_add,unable to retrieve channel,{0}',payload.channel_id)
 				return
+			await channel.send("test")
 			message = channel.fetch_message(payload.message_id)
 			# this scans the message.reactions[] for a reaction that matches our star emote
 			reaction = next((x for x in message.reactions if x.emoji == self.favorite_emote), None)
@@ -43,7 +44,7 @@ class AusBot(discord.Client):
 				await message.attachments[0].save(self.file_storage+message.filename)
 				logging.info('saved {0} to ausclan gallery',message.filename)
 		# handles exceptions for get_channel and fetch_message and save
-		except (discord.NotFound, discord.Forbidden, discord.HTTPException) as e:
+		except (discord.NotFound, discord.Forbidden, discord.HTTPException, discord.InvalidArgument) as e:
 			logging.error('failed to pull file,{0}',e.text)
 		pass
 
