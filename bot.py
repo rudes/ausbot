@@ -37,11 +37,13 @@ class AusBot(discord.Client):
 				return
 			message = await channel.fetch_message(payload.message_id)
 			# this scans the message.reactions[] for a reaction that matches our star emote
-			if payload.emoji == this.favorite_emote:
-				if reaction.count > 4:
-					await message.add_reaction(self.check_emote)
-					await message.attachments[0].save(self.file_storage+message.filename)
-					logging.info('saved {0} to ausclan gallery'.format(message.filename))
+			reaction = next((x for x in message.reactions if x.emoji == self.favorite_emote), None)
+			if reaction is None:
+				logging.info('on_raw_reaction_add,message does not contain favorite_emote,{0}'.format(payload.message_id))
+			if reaction.count > 4:
+				await message.add_reaction(self.check_emote)
+				await message.attachments[0].save(self.file_storage+message.filename)
+				logging.info('saved {0} to ausclan gallery'.format(message.filename))
 		# handles exceptions for get_channel and fetch_message and save
 		except (discord.NotFound, discord.Forbidden, discord.HTTPException, discord.InvalidArgument) as e:
 			logging.error('failed to pull file,{0}'.format(e.text))
