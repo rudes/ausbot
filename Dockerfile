@@ -1,4 +1,4 @@
-FROM python:3-onbuild
+FROM python:3
 
 WORKDIR /bot
 ADD . /bot
