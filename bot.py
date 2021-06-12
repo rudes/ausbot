@@ -2,9 +2,11 @@ import os
 import discord
 import logging
 
+from commands import events
 from handlers import reactions
 
 from discord.ext import commands
+from discord_slash import SlashCommand
 
 # basic running log that will sit on the server outside of docker /var/log/ausbot.log
 # we can view this file anytime and keep an eye on errors or info
@@ -40,8 +42,10 @@ intents.reactions = True
 
 # create the bot and add the "Cogs" or classes
 bot = commands.Bot(command_prefix='!', intents=intents)
+slash = SlashCommand(bot, sync_commands=True, sync_on_cog_reload=True)
 bot.add_cog(AusBot(bot))
 bot.add_cog(reactions.ReactionHandler(bot))
+bot.add_cog(events.EventHandler(bot))
 
 # we pull the botkey from the servers environment
 # variables to prevent storing it in github
